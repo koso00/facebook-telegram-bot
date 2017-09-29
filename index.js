@@ -11,7 +11,7 @@ var api = new telegram({
 });
 
 console.log(config.user);
-console.log(config.pass)
+console.log(config.pass);
 login({email: config.user, password: config.pass }, (err, fb) => {
   fb.setOptions({logLevel : "warn"});
     api.on("message",function(message){
@@ -19,11 +19,11 @@ login({email: config.user, password: config.pass }, (err, fb) => {
         case "/list":
         fb.getThreadList(0, 10, "inbox", function(err ,arr){
           t = "";
+					for (i = 0; i < 10; i++){
           fb.getUserInfo(arr[0].participants[0], (er, ret) => {
-            console.log("+++++++++++++++++++++++++++++++++++++++++++")
-          console.log(ret)
-          console.log("+++++++++++++++++++++++++++++++++++++++++++")
+          console.log(ret[arr[0].participants[0]].name)
         })
+			}
 
     })
         break;
